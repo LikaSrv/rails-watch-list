@@ -5,20 +5,23 @@
   <div class="d-flex justify-content-end">
     <a class="btn btn-success" href="<%=new_list_bookmark_path(@list)%>">Add a movie</a>
   </div>
-
   <div class="m-4 d-flex flex-row">
     <% if @list.movies.empty?%>
       <p>The list is empty !</p>
     <% else%>
-      <%@list.movies.each do |movie|%>
-        <div class="card m-4 shadow" style="width: 18rem;">
-          <img class="card-img-top" src="<%=movie.poster_url%>" alt="Card image cap" style="height: 200px; object-fit: cover">
-          <div class="card-body">
-            <h3><%= movie.title%></h3>
-            <p class="card-text"><%= movie.overview%></p>
-          </div>
+      <div class="container">
+        <div class="row">
+          <%@list.movies.each do |movie|%>
+            <div class="card m-4 shadow col-3" style="width: 18rem;">
+              <img class="card-img-top" src="<%=movie.poster_url%>" alt="Card image cap" style="height: 200px; object-fit: cover">
+              <div class="card-body">
+                <h3><%= movie.title%></h3>
+                <p class="card-text"><%= movie.overview%></p>
+              </div>
+            </div>
+          <%end%>
         </div>
-      <%end%>
+      </div>
     <%end%>
   </div>
 </div>
