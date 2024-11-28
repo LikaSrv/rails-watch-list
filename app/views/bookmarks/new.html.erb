@@ -1,0 +1,7 @@
+<div class="card shadow" style="width: 50%; margin: auto; padding: 50px; margin-top: 50px">
+  <%= simple_form_for [@list, @bookmark] do |m| %>
+    <%= m.input :comment%>
+    <%= m.input :movie_id, collection: Movie.all.map { |m| [m.title, m.id]} %>
+    <%= m.button :submit, class: "btn btn-success"%>
+  <%end%>
+</div>
