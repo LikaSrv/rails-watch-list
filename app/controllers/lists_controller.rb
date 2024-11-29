@@ -6,13 +6,9 @@ class ListsController < ApplicationController
   def show
     @list = List.find_by(id: params[:id])
     @bookmarks = Bookmark.select { |bookmark| bookmark.list_id == @list.id}
-    if !@bookmarks.empty?
-      @movies = []
-      @bookmarks.each do |b|
-        @movies << Movie.select { |movie| movie.id == b.movie_id}
-      end
-    else
-
+    @movies = []
+    @bookmarks.each do |b|
+      @movies << Movie.select { |movie| movie.id == b.movie_id}
     end
   end
 
