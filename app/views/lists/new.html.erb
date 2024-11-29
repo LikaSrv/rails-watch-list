@@ -1,6 +1,7 @@
 <div class="card bg-light shadow" style="width: 50%; margin: auto; padding: 50px; margin-top: 50px">
   <%= simple_form_for @list do |l|%>
     <%= l.input :name%>
+    <%= f.input :photo, as: :file %>
     <%= l.button :submit, class: "btn btn-success"%>
   <%end%>
 </div>

@@ -10,6 +10,7 @@
   <div class="m-4 row">
     <%@lists.each do |list|%>
       <div class="col-2 list-card shadow border rounded-4 d-flex justify-content-center align-items-center m-4">
+        <%=cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill %>
         <%=link_to list.name, list_path(list), class: "text-light text-decoration-none"%>
       </div>
     <%end%>
