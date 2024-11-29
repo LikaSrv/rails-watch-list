@@ -7,6 +7,7 @@ class ListsController < ApplicationController
     @list = List.find_by(id: params[:id])
     @bookmarks = Bookmark.select { |bookmark| bookmark.list_id == @list.id}
     @movies = []
+    @review = Review.new
     @bookmarks.each do |b|
       @movies << Movie.select { |movie| movie.id == b.movie_id}
     end

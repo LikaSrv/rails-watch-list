@@ -4,4 +4,6 @@ class Bookmark < ApplicationRecord
   belongs_to :movie
   belongs_to :list
 
+  has_many :reviews, dependent: :destroy
+
 end

@@ -10,24 +10,40 @@
       <p>The list is empty !</p>
     <% else%>
       <div class="container">
-        <%@list.movies.each do |movie|%>
+        <%@list.bookmarks.each do |bookmark|%>
           <div class="d-flex flex-row justify-content-between">
             <div class="card shadow col-3" style="width: 18rem;">
-              <img class="card-img-top mt-2" src="<%=movie.poster_url%>" alt="Card image cap" style="height: 200px; object-fit: cover">
+              <img class="card-img-top p-2" src="<%=bookmark.movie.poster_url%>" alt="Card image cap" style="height: 200px; object-fit: cover">
               <div class="card-body">
                 <div class="text-end">
-                  <p>Rating: <%= movie.rating %> <i class="fa-solid fa-star text-warning"></i></p>
+                  <p>Rating: <%= bookmark.movie.rating %> /10 <i class="fa-solid fa-star text-warning"></i></p>
                 </div>
-                <h3><%= movie.title %></h3>
-                <p class="card-text"><%= movie.overview %></p>
+                <h3><%= bookmark.movie.title %></h3>
+                <p class="card-text"><%= bookmark.movie.overview %></p>
               </div>
             </div>
+            <%# Reviews %>
             <div style="width: 40%">
               <h4>Reviews : </h4>
               <ul class="list-group" >
-                <li class="list-group-item"><%=@list.bookmarks[@list.movies.index(movie)].comment%></li>
-                
+                <li class="list-group-item bg-primary text-light"><%=bookmark.comment%></li>
+                <% bookmark.reviews.each do |review| %>
+                  <li class="list-group-item">
+                    <div class="d-flex flex-row justify-content-between">
+                      <%= review.content %>
+                      <p>anonymous</p>
+                    </div>
+                  </li>
+                <%end%>
               </ul>
+            </div>
+            <%# new review %>
+            <div>
+              <h1>New review</h1>
+              <%= simple_form_for [bookmark, @review] do |review|%>
+                <%= review.input :content%>
+                <%= review.submit "Submit", class: "btn btn-success"%>
+              <%end%>
             </div>
           </div>
         <%end%>
